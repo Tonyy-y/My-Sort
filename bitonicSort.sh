@@ -70,4 +70,3 @@ bitonicSort 0 $putere 1
 for (( i=0; i<len; i++)); do 
     printf "%d\n" ${v[i]}
 done > numbers.out
-echo "" >> numbers.out
