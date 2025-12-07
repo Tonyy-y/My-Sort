@@ -23,7 +23,7 @@ bitonicSwap() {
     local val_j=${v[$j]}
 
     if [[ ($dir -eq 1 && $val_i -gt $val_j) || \
-          ($dir -eq 0 && $val_i -lt $val_j) ]]; then
+        ($dir -eq 0 && $val_i -lt $val_j) ]]; then
         
         v[$i]=$val_j
         v[$j]=$val_i
@@ -66,8 +66,13 @@ bitonicSort() {
 #Apelam algoritmul crescator, de la 0 pana la cea mai mica putere a lui 2 >= decat len
 bitonicSort 0 $putere 1
 
-#Afisam doar numerele pana la lungimea sirului intial sortate
-for (( i=0; i<len; i++)); do 
-    printf "%d\n" ${v[i]}
-done > numbers.out
-echo "" >> numbers.out
+#Afisam numerele eficient in cazul in care lungimea sirului este o putere a lui 2
+if (( len==putere )); then
+    printf "%d\n" ${v[@]} > numbers.out
+
+#Altfel afisam doar numerele pana la lungimea sirului intial sortate
+else
+    for (( i=0; i<len; i++ )); do 
+        printf "%d\n" ${v[i]}
+    done > numbers.out
+fi
