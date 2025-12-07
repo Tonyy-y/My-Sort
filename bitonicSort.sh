@@ -1,18 +1,4 @@
 #!/bin/bash
-v=($(cat numbers.in))
-len=${#v[@]}
-
-#Cod pentru cazurile in care lungimea nu este o putere de a lui 2
-putere=1
-while (( putere<len )); do
-    (( putere*=2 ))
-done
-
-VAL_MAX=9999999999
-
-for (( i=len; i<putere; i++ )); do
-    v[$i]=$VAL_MAX
-done
 
 bitonicSwap() {
     local i=$1
@@ -62,6 +48,21 @@ bitonicSort() {
         bitonicMerge $low $count $dir
     fi
 }
+
+v=($(cat numbers.in))
+len=${#v[@]}
+
+#Cod pentru cazurile in care lungimea nu este o putere de a lui 2
+putere=1
+while (( putere<len )); do
+    (( putere*=2 ))
+done
+
+VAL_MAX=9999999999
+
+for (( i=len; i<putere; i++ )); do
+    v[$i]=$VAL_MAX
+done
 
 #Apelam algoritmul crescator, de la 0 pana la cea mai mica putere a lui 2 >= decat len
 bitonicSort 0 $putere 1
