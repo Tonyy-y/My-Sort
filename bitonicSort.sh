@@ -49,8 +49,14 @@ bitonicSort() {
     fi
 }
 
-v=($(cat numbers.in))
+if [[ ! -f "$1" ]]; then
+    echo "Error: Fisierul $1 nu a fost gasit."
+    exit 1
+fi
+
+v=($(cat "$1"))
 len=${#v[@]}
+ordine=$2 # 1 sau 0
 
 #Cod pentru cazurile in care lungimea nu este o putere de a lui 2
 putere=1
@@ -58,14 +64,18 @@ while (( putere<len )); do
     (( putere*=2 ))
 done
 
-VAL_MAX=9999999999
+if [[ $ordine -eq 1 ]]; then
+    VAL_MAX=999999999
+else
+    VAL_MAX=-999999999
+fi
 
 for (( i=len; i<putere; i++ )); do
     v[$i]=$VAL_MAX
 done
 
-#Apelam algoritmul crescator, de la 0 pana la cea mai mica putere a lui 2 >= decat len
-bitonicSort 0 $putere 1
+#Apelam algoritmul crescator/descrescator, de la 0 pana la cea mai mica putere a lui 2 >= decat len
+bitonicSort 0 $putere $ordine
 
 #Afisam numerele eficient in cazul in care lungimea sirului este o putere a lui 2
 if (( len==putere )); then
