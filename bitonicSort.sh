@@ -54,9 +54,10 @@ if [[ ! -f "$1" ]]; then
     exit 1
 fi
 
-v=($(cat "$1"))
+v=($(cat $1))
 len=${#v[@]}
-ordine=$2 # 1 sau 0
+ordine=$3 # asc sau desc
+[[ $ordine == "desc" ]] && ordine=0 || ordine=1
 
 #Cod pentru cazurile in care lungimea nu este o putere de a lui 2
 putere=1
@@ -79,11 +80,11 @@ bitonicSort 0 $putere $ordine
 
 #Afisam numerele eficient in cazul in care lungimea sirului este o putere a lui 2
 if (( len==putere )); then
-    printf "%d\n" ${v[@]} > numbers.out
+    printf "%d\n" ${v[@]} > $2
 
 #Altfel afisam doar numerele pana la lungimea sirului intial sortate
 else
     for (( i=0; i<len; i++ )); do 
         printf "%d\n" ${v[i]}
-    done > numbers.out
+    done > $2
 fi
