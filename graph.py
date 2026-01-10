@@ -7,7 +7,7 @@ import sys
 try:
     import matplotlib.pyplot as plt
 except ImportError:
-    sys.exit("Install matplot lib\nUse 'pip install matplotlib'")
+    sys.exit("Instaleaza matplot lib\nFoloseste 'pip install matplotlib'")
     
 
 def ceil_to_2_decimals(value):
@@ -82,4 +82,5 @@ plt.xticks(runs, numar_elemente, rotation=45, fontsize=18)
 plt.legend(fontsize=10)
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
+
 plt.show()
