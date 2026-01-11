@@ -5,7 +5,7 @@ import random
 import sys
 
 try:
-    import matplotlib.pyplot as plt # type: ignore
+    import matplotlib.pyplot as plt
 except ImportError:
     sys.exit("Instaleaza matplot lib\nFoloseste 'pip install matplotlib'")
     
