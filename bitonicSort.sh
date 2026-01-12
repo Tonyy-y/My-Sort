@@ -22,7 +22,7 @@ bitonicMerge() {
     local dir=$3    #1 = Crescator; 0 = Descrescator;
 
     if (( count > 1 )); then
-        local k=$(( count/2 ))
+        local k=$(( count>>1 ))
         for (( i=low ; i < low+k; i++)); do
             bitonicSwap $i $(( i+k )) $dir
         done
@@ -39,7 +39,7 @@ bitonicSort() {
     local dir=$3    #1 = Crescator; 0 = Descrescator;
     
     if (( count > 1 )); then
-        local k=$(( count/2 ))
+        local k=$(( count>>1 ))
 
         bitonicSort $low $k 1
 
@@ -62,7 +62,7 @@ ordine=$3 # asc sau desc
 #Cod pentru cazurile in care lungimea nu este o putere de a lui 2
 putere=1
 while (( putere<len )); do
-    (( putere*=2 ))
+    (( putere<<=1 ))
 done
 
 if [[ $ordine -eq 1 ]]; then
